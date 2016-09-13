@@ -1,0 +1,36 @@
+{
+  "name": "desk-slider",
+  "version": "1.0.0",
+  "description": "A slider using CSS, JavaScript and HTML5",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marciogurka/desk-slider.git"
+  },
+  "keywords": [
+    "deskbookers",
+    "slider",
+    "html",
+    "css"
+  ],
+  "author": "Marcio Jose Gurka Junior",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marciogurka/desk-slider/issues"
+  },
+  "homepage": "https://github.com/marciogurka/desk-slider#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^2.0.0"
+  },
+  "dependencies": {
+    "angular": "^1.5.8"
+  }
+}
