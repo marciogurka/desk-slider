@@ -17,20 +17,35 @@ gulp.task('lint', function() {
 
 // Compile Our Sass
 gulp.task('sass', function() {
-    return gulp.src('scss/*.scss')
+    return gulp.src('scss/app.scss')
+        .pipe(concat('all.scss'))
         .pipe(sass())
         .pipe(gulp.dest('dist/css'));
 });
 
 // Concatenate & Minify JS
 gulp.task('scripts', function() {
-    return gulp.src('js/*.js')
+    return gulp.src('js/**/*.js')
         .pipe(concat('all.js'))
         .pipe(gulp.dest('dist'))
         .pipe(rename('all.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('dist/js'));
 });
+
+//Save libs from bower
+gulp.task('libs', function() {
+    return gulp.src('bower_components/angular/angular.min.js')
+        .pipe(concat('lib.js'))
+        .pipe(gulp.dest('dist/js'));
+        
+})
+
+// Save font-awesome
+gulp.task('fontawesome', function() {
+    return gulp.src('bower_components/font-awesome/**')
+        .pipe(gulp.dest('dist/lib'));
+})
 
 // Watch Files For Changes
 gulp.task('watch', function() {
@@ -39,4 +54,4 @@ gulp.task('watch', function() {
 });
 
 // Default Task
-gulp.task('default', ['lint', 'sass', 'scripts', 'watch']);
+gulp.task('default', ['lint', 'sass', 'scripts', 'watch', 'libs', 'fontawesome']);

@@ -2,10 +2,89 @@
 <html>
 <head>
 	<title>DeskBookers Test - Slider</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+	<link rel="stylesheet" href="/dist/css/all.css"/>
+	<link rel="stylesheet" href="/dist/lib/css/font-awesome.min.css"/>
+	<script src="dist/js/lib.js"></script>
+	
+	<script src="https://maps.google.com/maps/api/js?libraries=placeses,visualization,drawing,geometry,places"></script>
+	<script src="https://rawgit.com/allenhwkim/angularjs-google-maps/master/build/scripts/ng-map.js"></script>
+	
+	<!-- App -->
+	<script src="js/app.js"></script>
+	
+	<!-- Controller -->
+	<script src="js/controllers/app.js"></script>
+	
+	<!-- Service -->
+	<script src="js/services/app.service.js"></script>
 </head>
-<body>
-<header>
-	<h1>Deskbookers</h1>
+<body ng-app="app" ng-controller="App">
+<header class="header">
+	<h1 class="no-margin">Deskbookers</h1>
 </header>
+<div class="search">
+	<a class="button-left" onclick="plusDivs(-1)">
+		<img src="img/left-arrow.png" alt="Left Arrow">
+	</a>
+	<a class="button-right" onclick="plusDivs(+1)">
+		<img src="img/right-arrow.png" alt="Right Arrow">
+	</a>
+	<div class="slider">
+		<img class="photo-slider" src="https://static.pexels.com/photos/27406/pexels-photo-27406-large.jpg">
+		<div class="head-slider">
+			<p class="head-slider-text">Find your workplace here...</p>
+		</div>
+	</div>
+	
+	<div class="slider">
+		<img class="photo-slider" src="https://static.pexels.com/photos/1380/black-and-white-city-skyline-buildings-large.jpg">
+		<div class="head-slider">
+			<p class="head-slider-text">With this awesome tool...</p>
+		</div>
+	</div>
+	
+	<div class="slider">
+		<img class="photo-slider" src="https://static.pexels.com/photos/28221/pexels-photo-28221-large.jpg">
+		<div class="head-slider">
+			<p class="head-slider-text">Made by Márcio José Gurka Júnior</p>
+		</div>
+	</div>
+
+	
+	<div class="search-input">
+		<form ng-submit="search()">
+			<input type="text" placeholder="Find a place to work" ng-model="text">
+			<button type="submit">Search</button>
+		</form>
+	</div>
+</div>
+
+
+<div class="result" ng-repeat="result in search_results | filter:{ name : text }" ng-show="search_results.length > 0">
+	<div ng-show="search_results.length == 0"><h3 class="result-title">No results found</h3></div>
+	<div ng-show="search_results.length > 0"><h3 class="result-title">Result {{ $index + 1 }}:</h3></div>
+	<div class="img-result">
+		<img ng-src="{{(result.image_urls[0])?result.image_urls[0]:result.image_urls2[0]}}">
+	</div>
+	<div class="info">
+		<p>{{result.name}}</p>
+		<p ng-show="result.minimum_capacity && result.maximum_capacity"><i class="fa fa-user tooltip" title="Capacity"><span class="tooltiptext">Capacity</span></i> {{ result.minimum_capacity }} - {{ result.maximum_capacity }}</p>
+		<p ng-show="result.location_name && result.location_city"><i class="fa fa-road" aria-hidden="true" title="Address"></i> <span ng-repeat="address in result.address">{{address}} </span></p>
+		<p ng-show="result.hour_price"><i class="fa fa-money" aria-hidden="true" title="Hour price"></i> {{ result.hour_price }} </p>
+		<p ng-show="result.rating"><i class="fa fa-gratipay" aria-hidden="true" title="User rating"></i> {{ result.rating }} </p>
+		<p ng-show="result.facility_icons.length > 0">Facilities: <span ng-repeat="facility in result.facility_icons" class="facility-icon"><i class="{{ facility.icon }}" title="{{ facility.name }}"></i></span> </p>
+	</div>
+	<div class="map" ng-if="result.coordinate[0] && result.coordinate[1]">
+		<ng-map center="[{{result.coordinate[0]}}, {{result.coordinate[1]}}]">
+			<marker position="[{{result.coordinate[0]}}, {{result.coordinate[1]}}]" title="{{result.name}}" animation="Animation.BOUNCE"></marker>
+		</ng-map>
+	</div>
+	<hr></hr>
+</div>
+
 </body>
 </html>
+<script src="js/script.js"></script>

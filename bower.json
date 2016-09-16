@@ -1,0 +1,27 @@
+{
+  "name": "desk-slider",
+  "description": "A slider using CSS, JavaScript and HTML5",
+  "main": "index.html",
+  "authors": [
+    "Marcio Jose Gurka Junior"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "deskbookers",
+    "slider",
+    "html",
+    "css"
+  ],
+  "homepage": "desk-slider-marcio.surge.sh",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "font-awesome": "^4.6.3"
+  }
+}
