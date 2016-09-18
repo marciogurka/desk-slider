@@ -5,8 +5,12 @@ $font-roboto: 'Roboto', sans-serif;
 
 body {
     font-family: $font-roboto;
+    margin: 0;
 }
 
+.center {
+    text-align: center;
+}
 
 .header{
     height: 38px;
