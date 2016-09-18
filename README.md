@@ -1,2 +1,4 @@
 # desk-slider
-A slider using CSS, HTML and JavaScript
+A slider using SASS, HTML, AngularJS and JavaScript 
+
+Hosted at http://desk-slider-marcio.surge.sh/
